@@ -1,6 +1,6 @@
 ---
 title: "Social Survey 2010"
-author: "Put your name here!"
+author: "Joseph Nielsen"
 date: "Fall 2018"
 output:
   html_document:
@@ -23,6 +23,7 @@ Use the data from the 2010 general social survey to explore whether belief in co
 
 <!--Decide on your methods:  use "variable analysis" or other appropriate descriptors.  Make sure to choose at least one graphical method and at least one numerical method.!-->
 
+We used the data from alldata to get our statistics. Then we ran multipe tests to analyze the variables given. We used a bar graph for each of the tests; Race vs condrift, rave vs cappun, and cappun vs condrift. Then we ran many statstical tests. We did a basic statstical test on each and a Chi-Square test on each. This gives us enough infoprmation to come to a conclusion ofr each qeustion.  
 #Results
 
 <!--Divide this section into two sub-sections:  One for your descriptive  results and one for your inferential results.!-->
@@ -44,15 +45,61 @@ barchartGC(~race+condrift, data=alldata, type = "percent")
 ```
 
 
+```{r}
+barchartGC(~race+cappun, data=alldata, type = "percent") 
+```
+
+```{r}
+barchartGC(~condrift +cappun, data=alldata, type = "percent")
+```
+
 ### Numerical Descriptive Results
 
 <!--Numerical results go here. Use the numerical results to describe the patterns if any that exist in the data as focused toward the research question!-->
+```{r} 
+tab = xtabs(~race+condrift, data=alldata)
+rowPerc(tab)
+```
+
+
+```{r}
+tab2 = xtabs(~race+cappun, data=alldata)
+rowPerc(tab2)
+```
+
+```{r}
+tab3 = xtabs(~condrift+cappun, data=alldata)
+rowPerc(tab3)
+```
 
 ## Inferential Results
 
 <!--State hypothesis clearly.  Make sure your discussion of the inferential test covers all the aspects that the test output produces, such as test statistic, p-value etc.  Make a decision about the null hypothesis, explain the assumptions on which the selected test/procedure was based, and why the chosen procedure satisfys the assumptions and is appropriate to answer the research question!-->
 
 
+```{r}
+chisqtestGC(~race+condrift, data=alldata, graph = TRUE)
+```
+
+```{r}
+chisqtestGC(~race+cappun, data=alldata, graph = TRUE)
+```
+
+```{r}
+chisqtestGC(~condrift+cappun, data=alldata, graph = TRUE)
+```
+
 # Discussion and Conclusion
 
 <!--Discussion and conclusion here.  If you found a relationship be sure to consider whether the relationship occurs because one of the variavbles causes the other, or whether they perhasps are related for some other reason.  Watch the chapter 6 videos from the GeorgeTown videos collection.!-->
+
+Race Vs Condrift  
+  Just from looking at the bar charts one can see that most whites and other believe that continantial drift is true. While in the black section a higher precent of people  that believe that continantial dirft is false. Then looking at the basic statstical results it shows that 23.3% black people found continantail drift to be false while less than 10% found it false in the other two races. The Chi-square calculated value is greater than the chi-square critical value, then we reject our null hypothesis. Meaning that there is a relationship between race and condrift.  
+  
+Race VS Cappun  
+  The race that favors capital punishment the most is white people at 72.7%. While black people oppose it the mostbecause on;y 46.8 favor it. While others is split about with 56.5% favor it. The Chi-square calculated value is greater than the chi-square critical value, then we reject our null hypothesis. Meaning that there is a relationship between race and Cappun. 
+    
+Condrift Vs Cappun  
+  I dont really see any relationships here because either way if you think continantial drift is true or false about 66% favor capital punishment either way so i dont know what to take from this. Chi-square calculated value is less than the chi-square critical value, then we accept the null hypothesis. Meaning that there is no relationship between the two.
+  
+    
